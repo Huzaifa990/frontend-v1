@@ -24,18 +24,13 @@ const ViewBooking = () => {
   }, [location.state.id]);
 
   //Functions to navigate from one state to another upon the press of certain buttons.
-  function goToEdit(id) {
-    navigate("/editBooking", { state: { id: id } });
-  }
-
+ 
   function goToDelete(id) {
     navigate("/deleteBooking", { state: { id: id } });
   }
 
   //Function that also passes the ID of the object to the navigated page.
-  function editCar(id) {
-    goToEdit(id);
-  }
+  
 
   function deleteCar(id) {
     goToDelete(id);

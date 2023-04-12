@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 
 // 👇️ View all listings from the API
 const ViewListingsDashboard = () => {
@@ -51,94 +50,6 @@ const ViewListingsDashboard = () => {
 
   setTimeout(timeFix, 2000);
 
-  // 👇️ Allows user to book a car
-  const bookingCar = () => {
-    var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-    const headers = {
-      Authorization: userDetails,
-    };
-
-    var pickDate = document.getElementById("pickDate").value;
-    var pickTime = document.getElementById("pickTime").value;
-    var dropDate = document.getElementById("dropDate").value;
-    var dropTime = document.getElementById("dropTime").value;
-
-    var pickupDate = pickDate + "T" + pickTime + "Z";
-    var dropOffDate = dropDate + "T" + dropTime + "Z";
-    console.log(pickupDate);
-    console.log(dropOffDate);
-    var paymentMethod = document.getElementById("COD").value;
-
-    var car = location.state.id;
-
-    console.log(car, dropOffDate, pickupDate, paymentMethod);
-    // 👇️ Axios command to add a booking
-    axios
-      .post(
-        "http://localhost:8080/api/booking/",
-        {
-          car,
-          pickupDate,
-          dropOffDate,
-          paymentMethod,
-        },
-        {
-          headers: headers,
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        // 👇️ Displaying the confirmation message and clearing the input values //
-        document.getElementById("errorMessage").innerText =
-          "Your Car Has Been Booked Successfully!";
-        document.getElementById("errorApi").style.visibility = "visible";
-        document.getElementById("errorApi").style.position = "relative";
-        document.getElementById("errorApi").style.width = "100%";
-        document.getElementById("errorApi").style.background = "green";
-
-        document.getElementById("pickDate").style.border = "none";
-        document.getElementById("dropDate").style.border = "none";
-        document.getElementById("pickTime").style.border = "none";
-        document.getElementById("dropTime").style.border = "none";
-
-        document.getElementById("pickDate").value = "";
-        document.getElementById("dropDate").value = "";
-        document.getElementById("pickTime").value = "";
-        document.getElementById("dropTime").value = "";
-      })
-      .catch((e) => {
-        console.log(e);
-        // 👇️ Displaying the error codes on the screen from the API //
-        if (e.response.data.msg !== undefined) {
-          document.getElementById("errorMessage").innerText = e.response.data.msg;
-          document.getElementById("pickDate").style.border = "none";
-          document.getElementById("dropDate").style.border = "none";
-          document.getElementById("pickTime").style.border = "none";
-          document.getElementById("dropTime").style.border = "none";
-          document.getElementById("errorApi").style.visibility = "visible";
-          document.getElementById("errorApi").style.backgroundColor = "crimson";
-          document.getElementById("errorApi").style.position = "relative";
-        } else if (e.response.data.error.pickupDate !== undefined) {
-          document.getElementById("errorApi").style.backgroundColor = "crimson";
-          document.getElementById("pickDate").style.border = "2px solid crimson";
-          document.getElementById("pickTime").style.border = "2px solid crimson";
-          document.getElementById("errorMessage").innerText = e.response.data.error.pickupDate;
-          document.getElementById("errorApi").style.visibility = "visible";
-          document.getElementById("errorApi").style.position = "relative";
-          document.getElementById("errorApi").style.width = "100%";
-        } else if (e.response.data.error.dropOffDate !== undefined) {
-          document.getElementById("errorApi").style.backgroundColor = "crimson";
-          document.getElementById("pickDate").style.border = "none";
-          document.getElementById("pickTime").style.border = "none";
-          document.getElementById("dropDate").style.border = "2px solid crimson";
-          document.getElementById("dropTime").style.border = "2px solid crimson";
-          document.getElementById("errorMessage").innerText = e.response.data.error.dropOffDate;
-          document.getElementById("errorApi").style.visibility = "visible";
-          document.getElementById("errorApi").style.position = "relative";
-          document.getElementById("errorApi").style.width = "100%";
-        }
-      });
-  };
 
   return (
     <>

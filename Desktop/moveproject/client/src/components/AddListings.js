@@ -72,7 +72,7 @@ const sendData = () => {
   console.log(picture);
   axios
     .post(
-      "http://localhost:8080/api/listing/",
+      "https://moveapi.onrender.com/api/listing/",
       {
         carName,
         company,

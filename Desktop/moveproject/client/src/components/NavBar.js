@@ -29,7 +29,7 @@ const NavBar = () => {
               </a>
               <span className="text-body">|</span>
               <a className="text-body px-3" href="Greet.js">
-                <i className="fa fa-envelope mr-2"></i>F2019-297@BNU.EDU.PK
+                <i className="fa fa-envelope mr-2"></i>MOVE@RENTALS.COM
               </a>
             </div>
           </div>

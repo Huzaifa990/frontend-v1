@@ -17,7 +17,7 @@ const Listings = () => {
   }, []);
 
   const names = async () => {
-    const response = await fetch("http://localhost:8080/api/listing/");
+    const response = await fetch("https://moveapi.onrender.com/api/listing/");
     console.log(response);
     const data = await response.json();
     console.log(data.listings);

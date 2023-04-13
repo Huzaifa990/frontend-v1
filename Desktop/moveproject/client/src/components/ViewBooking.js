@@ -31,7 +31,7 @@ const SignUp = () => {
       }
     }
     axios
-      .post("http://localhost:8080/api/auth/sign-up", {
+      .post("https://moveapi.onrender.com/api/auth/sign-up", {
         name,
         email,
         password,

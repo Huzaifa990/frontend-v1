@@ -7,7 +7,6 @@ import { InputMask } from "primereact/inputmask";
 
 const SignUp = () => {
   const sendData = () => {
-    alert("hi");
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
@@ -17,6 +16,7 @@ const SignUp = () => {
     let initCnic = document.getElementById("cnic").value;
     let profilePicture = document.getElementById("profile-pic").value;
     let phone = document.getElementById("phoneNumber").value;
+    let agreeWithTerms = true;
 
     let phoneStrip = "";
     for (var j = 0; j < phone.length; j++) {
@@ -41,6 +41,7 @@ const SignUp = () => {
         profilePicture,
         phoneNumber,
         cnic,
+        agreeWithTerms,
       })
       .then((res) => {
         console.log(res);
@@ -153,7 +154,10 @@ const SignUp = () => {
 
   function acceptTerms()
   {
-    
+    // document.getElementById("signUpbtn").disabled = false;
+    document.getElementById("signUpbtn").hidden = !(document.getElementById("signUpbtn").hidden);
+
+    // document.getElementById("signUpbtn").removeAttribute("disabled");
   }
 
   function togglePopup() {
@@ -352,7 +356,7 @@ const SignUp = () => {
                         </div>
                     </div>
 
-        <button className="btn btn-primary py-3 px-5" id="signUpbtn" onClick={sendData}>
+        <button className="btn btn-primary py-3 px-5" id="signUpbtn" hidden="true" onClick={sendData}>
           Sign Up
         </button>
         <br /> <br />

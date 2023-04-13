@@ -59,7 +59,7 @@ const NavBar = () => {
         <div className="position-relative bg-dark px-lg-5 navbar-front">
           <nav className="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
             <Link to="/" className="navbar-brand">
-              <h1 className="text-uppercase text-primary mb-1">MOV</h1>
+              <h1 className="text-uppercase text-primary mb-1">MOVE</h1>
             </Link>
             <button
               type="button"

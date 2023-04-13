@@ -1,7 +1,6 @@
 import "../App.css";
 import "../bootstrap.min.css";
 import NavBar from "../components/NavBar";
-import Search from "../components/Search";
 import Introduction from "../components/Introduction";
 import SubServices from "../components/Services/SubServices";
 import Discount from "../components/Services/Discount";
@@ -51,7 +50,7 @@ function App() {
             path="/"
             element={
               <>
-                <NavBar /> <Search /> <Slider /> <Introduction /> <SubServices numbering="2" />{" "}
+                <NavBar />  <Slider /> <Introduction /> <SubServices numbering="2" />{" "}
                 <Discount /> <FindCar /> <ContactUs numbering="4" /> <Footer />{" "}
               </>
             }
@@ -60,7 +59,7 @@ function App() {
             path="about"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="About" /> <Introduction />{" "}
+                <NavBar />  <SubHeaderAbout headingText="About" /> <Introduction />{" "}
                 <Driver /> <Footer />{" "}
               </>
             }
@@ -69,7 +68,7 @@ function App() {
             path="contact"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Contact" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Contact" />{" "}
                 <ContactUs numbering="1" /> <Map /> <Footer />{" "}
               </>
             }
@@ -78,7 +77,7 @@ function App() {
             path="services"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Services" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Services" />{" "}
                 <SubServices numbering="1" /> <Discount /> <Driver /> <Footer />{" "}
               </>
             }
@@ -87,7 +86,7 @@ function App() {
             path="signup"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="SignUp" /> <SignUp />{" "}
+                <NavBar />  <SubHeaderAbout headingText="SignUp" /> <SignUp />{" "}
                 <SubServices numbering="1" />
                 <Footer />{" "}
               </>
@@ -97,7 +96,7 @@ function App() {
             path="signin"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="SignIn" /> <SignIn />{" "}
+                <NavBar />  <SubHeaderAbout headingText="SignIn" /> <SignIn />{" "}
                 <SubServices numbering="1" />
                 <Footer />{" "}
               </>
@@ -107,7 +106,7 @@ function App() {
             path="listings"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Listings" /> <Listings />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Listings" /> <Listings />{" "}
                 <Footer />{" "}
               </>
             }
@@ -116,7 +115,7 @@ function App() {
             path="addListings"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="List Your Car" /> <AddListings />{" "}
+                <NavBar />  <SubHeaderAbout headingText="List Your Car" /> <AddListings />{" "}
                 <Footer />{" "}
               </>
             }
@@ -125,7 +124,7 @@ function App() {
             path="viewListings"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Car Details" /> <ViewListings />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Car Details" /> <ViewListings />{" "}
                 <Footer />{" "}
               </>
             }
@@ -134,7 +133,7 @@ function App() {
             path="editListings"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Edit Details" /> <EditListing />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Edit Details" /> <EditListing />{" "}
                 <Footer />{" "}
               </>
             }
@@ -143,7 +142,7 @@ function App() {
             path="changepassword"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Update Password" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Update Password" />{" "}
                 <ChangePassword /> <SubServices numbering="1" />
                 <Footer />{" "}
               </>
@@ -153,7 +152,7 @@ function App() {
             path="deleteListings"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Delete Listing" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Delete Listing" />{" "}
                 <DeleteListing /> <Footer />{" "}
               </>
             }
@@ -162,7 +161,7 @@ function App() {
             path="requestForget"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Forgot Password" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Forgot Password" />{" "}
                 <RequestForget /> <Footer />{" "}
               </>
             }
@@ -171,7 +170,7 @@ function App() {
             path="reset"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Reset Password" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Reset Password" />{" "}
                 <ResetPassword /> <Footer />{" "}
               </>
             }
@@ -180,7 +179,7 @@ function App() {
             path="myListings"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="My Listings" /> <MyListings />{" "}
+                <NavBar />  <SubHeaderAbout headingText="My Listings" /> <MyListings />{" "}
                 <Footer />{" "}
               </>
             }
@@ -189,7 +188,7 @@ function App() {
             path="myBookings"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="My Bookings" /> <MyBookings />{" "}
+                <NavBar />  <SubHeaderAbout headingText="My Bookings" /> <MyBookings />{" "}
                 <Footer />{" "}
               </>
             }
@@ -198,7 +197,7 @@ function App() {
             path="editBooking"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Edit Bookings" /> <EditBooking />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Edit Bookings" /> <EditBooking />{" "}
                 <Footer />{" "}
               </>
             }
@@ -207,7 +206,7 @@ function App() {
             path="viewBooking"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="View Bookings" /> <ViewBooking />{" "}
+                <NavBar />  <SubHeaderAbout headingText="View Bookings" /> <ViewBooking />{" "}
                 <Footer />{" "}
               </>
             }
@@ -217,7 +216,7 @@ function App() {
             path="viewBookingLessor"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="View Bookings" /> <ViewBookingLessor />{" "}
+                <NavBar />  <SubHeaderAbout headingText="View Bookings" /> <ViewBookingLessor />{" "}
                 <Footer />{" "}
               </>
             }
@@ -226,7 +225,7 @@ function App() {
             path="deleteBooking"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Delete Bookings" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Delete Bookings" />{" "}
                 <DeleteBooking /> <Footer />{" "}
               </>
             }
@@ -236,7 +235,7 @@ function App() {
             path="lessorDashboard"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Dashboard" /> <LessorDashboard />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Dashboard" /> <LessorDashboard />{" "}
                 <Footer />{" "}
               </>
             }
@@ -246,7 +245,7 @@ function App() {
             path="lesseeDashboard"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Dashboard" /> <LesseeDashboard />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Dashboard" /> <LesseeDashboard />{" "}
                 <Footer />{" "}
               </>
             }
@@ -256,7 +255,7 @@ function App() {
             path="adminDashboard"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Admin Dashboard" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Admin Dashboard" />{" "}
                 <AdminDashboard /> <Footer />{" "}
               </>
             }
@@ -266,7 +265,7 @@ function App() {
             path="myProfile"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="My Profile" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="My Profile" />{" "}
                 <MyProfile /> <Footer />{" "}
               </>
             }
@@ -276,7 +275,7 @@ function App() {
             path="viewBookingDashboard"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="View Booking" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="View Booking" />{" "}
                 <ViewBookingDashBoard /> <Footer />{" "}
               </>
             }
@@ -286,7 +285,7 @@ function App() {
             path="viewListingDashboard"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="View Listing" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="View Listing" />{" "}
                 <ViewListingsDashboard /> <Footer />{" "}
               </>
             }
@@ -296,7 +295,7 @@ function App() {
             path="viewUser"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="View User" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="View User" />{" "}
                 <ViewUser /> <Footer />{" "}
               </>
             }
@@ -314,7 +313,7 @@ function App() {
             path="lessorWallet"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="My Wallet" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="My Wallet" />{" "}
                 <LessorWallet /> <Footer />{" "}
               </>
             }
@@ -324,7 +323,7 @@ function App() {
             path="lesseeWallet"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="My Wallet" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="My Wallet" />{" "}
                 <LesseeWallet/> <Footer />{" "}
               </>
             }
@@ -334,7 +333,7 @@ function App() {
             path="termsandconditions"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Terms and Conditions" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Terms and Conditions" />{" "}
                 <TermsAndConditions/> <Footer />{" "}
               </>
             }
@@ -344,7 +343,7 @@ function App() {
             path="privacyPolicy"
             element={
               <>
-                <NavBar /> <Search /> <SubHeaderAbout headingText="Privacy Policy" />{" "}
+                <NavBar />  <SubHeaderAbout headingText="Privacy Policy" />{" "}
                 <PrivacyPolicy/> <Footer />{" "}
               </>
             }

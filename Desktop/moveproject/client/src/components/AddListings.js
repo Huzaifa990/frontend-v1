@@ -1,14 +1,14 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import process from "../img/process.png";
 
 var picture = [];
 
 const AddListings = () => {
   
 
-window.onload = function () {
-  document.querySelector("#inp").addEventListener("change", readFile);
+
 
   function readFile(e) {
     let files = e.target.files;
@@ -40,7 +40,6 @@ window.onload = function () {
     }
     console.log(picture);
   }
-};
 
 
 
@@ -228,6 +227,32 @@ const sendData = () => {
     });
 };
 
+  function predictPrice(){
+    let variant = document.getElementById("model").value;
+    let carName = document.getElementById("make").value;
+    let model = parseInt(document.getElementById("modelYear").value);
+    let mileage = parseInt(document.getElementById("mileage").value);
+    let location = document.getElementById("location").value;
+    let transmissio = document.getElementById("transmission");
+    let transmission = transmissio[transmissio.selectedIndex].value;
+
+    var payload = {
+      "Car Variant": variant,
+      "Car Name":carName,
+      "Model Year":model,
+      "Transmission": transmission,
+      "Mileage": mileage,
+      "Location": location
+    }
+    console.log(payload);
+    axios.post("https://move-deploy.herokuapp.com/predict", payload).then((res)=>{
+      console.log(res);
+      document.getElementById("userPrice").innerText = res.prediction;
+    }).catch((e)=>{
+      console.log(e);
+    })
+  }
+
   return (
     <>
       <div className="signup-form-container">
@@ -240,11 +265,11 @@ const sendData = () => {
         </label>
         <div className="row">
           <div className="col-6 form-group">
-            <label for="">Company </label>
+            <label for="">Car Name </label>
             <input type="text" className="form-control p-4" required="required" id="make" />
           </div>
           <div className="col-6 form-group">
-            <label for="">Car Name</label>
+            <label for="">Variant</label>
             <input
               type="text"
               className="form-control p-4"
@@ -310,6 +335,7 @@ const sendData = () => {
               id="inp"
               accept="image/*"
               multiple
+              onChange={readFile}
             />
             <br /> <br />
             <div id="selected-images"></div>
@@ -362,6 +388,9 @@ const sendData = () => {
               min="500"
             />
           </div>
+          <button className="btn btn-primary" style={{height:"50px", marginTop:"31px", borderRadius:"5px"}} onClick={predictPrice}>
+            Predict Price <img src={process} alt="processing" width={30}/>
+          </button>
         </div>
         <br />
         <p className="sub-form-heading">Description:</p>

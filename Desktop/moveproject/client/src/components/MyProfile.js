@@ -25,7 +25,7 @@ export default function MyProfile() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/lesseeAnalytics", {
+      const response = await fetch("http://localhost:8080/api/analytics/lesseeAnalytics", {
         headers: { Authorization: userDetails },
       });
 
@@ -36,7 +36,7 @@ export default function MyProfile() {
     getData();
 
     async function getPersonalInfo() {
-      const response = await fetch("https://moveapi.onrender.com/api/auth/user", {
+      const response = await fetch("http://localhost:8080/api/auth/user", {
         headers: { Authorization: userDetails },
       });
 
@@ -57,7 +57,7 @@ export default function MyProfile() {
     getPersonalInfo();
 
     async function getUserData() {
-      const response = await fetch("https://moveapi.onrender.com/api/auth/user", {
+      const response = await fetch("http://localhost:8080/api/auth/user", {
         headers: { Authorization: userDetails },
       });
       var uInfo = await response.json();
@@ -73,7 +73,7 @@ export default function MyProfile() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page=0", {
+      const response = await fetch("http://localhost:8080/api/analytics/lessorAnalytics?pageSize=10&page=0", {
         headers: { Authorization: userDetails },
       });
 
@@ -90,7 +90,7 @@ export default function MyProfile() {
 
     axios
       .put(
-        "https://moveapi.onrender.com/api/auth/updateName",
+        "http://localhost:8080/api/auth/updateName",
         {
           updatedName,
         },
@@ -128,7 +128,7 @@ export default function MyProfile() {
 
     axios
       .put(
-        "https://moveapi.onrender.com/api/auth/updatePhoneNumber",
+        "http://localhost:8080/api/auth/updatePhoneNumber",
         {
           updatedPhoneNumber,
         },
@@ -153,7 +153,7 @@ export default function MyProfile() {
 
     axios
       .put(
-        "https://moveapi.onrender.com/api/auth/updateEmail",
+        "http://localhost:8080/api/auth/updateEmail",
         {
           updatedEmail,
         },
@@ -181,7 +181,7 @@ export default function MyProfile() {
 
     axios
       .put(
-        "https://moveapi.onrender.com/api/auth/updatePassword",
+        "http://localhost:8080/api/auth/updatePassword",
         {
           password,
           newPassword,
@@ -261,7 +261,7 @@ export default function MyProfile() {
 
     axios
       .put(
-        "https://moveapi.onrender.com/api/auth/updatedProfilePic",
+        "http://localhost:8080/api/auth/updatedProfilePic",
         {
           updatedProfilePic,
         },
@@ -388,7 +388,7 @@ export default function MyProfile() {
       cnicImages,
     };
     axios
-      .put("https://moveapi.onrender.com/api/auth/uploadCNIC", payload, {
+      .put("http://localhost:8080/api/auth/uploadCNIC", payload, {
         headers: headers,
       })
       .then((res) => {

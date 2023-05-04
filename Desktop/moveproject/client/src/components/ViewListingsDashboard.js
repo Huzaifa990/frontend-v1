@@ -19,7 +19,7 @@ const ViewListingsDashboard = () => {
 
   // 👇️ Getting data from the API and setting use states to store data and images form the API
   const names = async () => {
-    const response = await fetch("https://moveapi.onrender.com/api/listing/" + location.state.id, {
+    const response = await fetch("https://move-3dri.onrender.com/api/listing/" + location.state.id, {
       headers: { Authorization: userDetails },
     });
     console.log(response);

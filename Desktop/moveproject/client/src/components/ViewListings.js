@@ -27,7 +27,7 @@ const ViewListings = () => {
     var imgg = [];
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
     const names = async () => {
-      const response = await fetch("https://moveapi.onrender.com/api/listing/" + location.state.id, {
+      const response = await fetch("https://move-3dri.onrender.com/api/listing/" + location.state.id, {
         headers: { Authorization: userDetails },
       });
       console.log(response);
@@ -87,7 +87,7 @@ const ViewListings = () => {
     // 👇️ Axios command to add a booking
     axios
       .post(
-        "https://moveapi.onrender.com/api/booking/",
+        "https://move-3dri.onrender.com/api/booking/",
         {
           car,
           pickupDate,
@@ -186,7 +186,7 @@ const ViewListings = () => {
 
     const popupContainer = document.getElementById("popCredit");
     popupContainer.style.display = "none";
-    axios.delete("https://moveapi.onrender.com/api/booking/"+pendingId,
+    axios.delete("https://move-3dri.onrender.com/api/booking/"+pendingId,
     {
       headers: headers,
     }).then((res)=>{
@@ -231,7 +231,7 @@ const ViewListings = () => {
 
     axios
       .post(
-        "https://moveapi.onrender.com/api/booking/cardBooking",
+        "https://move-3dri.onrender.com/api/booking/cardBooking",
         {
           car,
           pickupDate,
@@ -312,7 +312,7 @@ const ViewListings = () => {
       }
     }
 
-    axios.put("https://moveapi.onrender.com/api/booking/stripePayment", {
+    axios.put("https://move-3dri.onrender.com/api/booking/stripePayment", {
       cardNumber,
       exp_month: parseInt(exp_month),
       exp_year: parseInt(exp_year),

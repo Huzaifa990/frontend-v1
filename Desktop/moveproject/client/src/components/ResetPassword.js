@@ -8,7 +8,7 @@ const ResetPassword = () => {
   const sendData = () =>{
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
-    axios.put("https://moveapi.onrender.com/api/auth/setPassword",{
+    axios.put("https://move-3dri.onrender.com/api/auth/setPassword",{
         otp,
         password,
         confirmPassword

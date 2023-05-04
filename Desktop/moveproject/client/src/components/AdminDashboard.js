@@ -26,7 +26,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/adminAnalytics", {
+      const response = await fetch("https://move-3dri.onrender.com/api/analytics/adminAnalytics", {
         headers: { Authorization: userDetails },
       });
 
@@ -333,7 +333,7 @@ function UsersTable() {
   var userDetails = JSON.parse(localStorage.getItem("userDetails"));
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/auth/getAllPendingApprovalUsers", {
+      const response = await fetch("https://move-3dri.onrender.com/api/auth/getAllPendingApprovalUsers", {
         headers: { Authorization: userDetails },
       });
 
@@ -348,7 +348,7 @@ function UsersTable() {
   }, [userDetails, ingnored]);
 
   async function approveUser(id){
-    axios.put("https://moveapi.onrender.com/api/auth/verifyUser/approve/"+id,
+    axios.put("https://move-3dri.onrender.com/api/auth/verifyUser/approve/"+id,
     {
       verified: true,
     },
@@ -364,7 +364,7 @@ function UsersTable() {
       console.log(e);
     });
 
-    await fetch("https://moveapi.onrender.com/api/auth/getAllPendingApprovalUsers", {
+    await fetch("https://move-3dri.onrender.com/api/auth/getAllPendingApprovalUsers", {
         headers: { Authorization: userDetails },
       })
       .then((res) => {
@@ -377,7 +377,7 @@ function UsersTable() {
   }
 
   async function rejectUser(id){
-    axios.put("https://moveapi.onrender.com/api/auth/verifyUser/reject/"+id,
+    axios.put("https://move-3dri.onrender.com/api/auth/verifyUser/reject/"+id,
     {
       verified: false,
     },
@@ -393,7 +393,7 @@ function UsersTable() {
       console.log(e);
     });
 
-    await fetch("https://moveapi.onrender.com/api/auth/getAllPendingApprovalUsers", {
+    await fetch("https://move-3dri.onrender.com/api/auth/getAllPendingApprovalUsers", {
         headers: { Authorization: userDetails },
       })
       .then((res) => {
@@ -478,7 +478,7 @@ function AllUsersTable() {
   var userDetails = JSON.parse(localStorage.getItem("userDetails"));
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/auth/getAllUsers", {
+      const response = await fetch("https://move-3dri.onrender.com/api/auth/getAllUsers", {
         headers: { Authorization: userDetails },
       });
 
@@ -559,7 +559,7 @@ function ListingsTable() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/adminAnalytics/getAllListings", {
+      const response = await fetch("https://move-3dri.onrender.com/api/analytics/adminAnalytics/getAllListings", {
         headers: { Authorization: userDetails },
       });
 
@@ -574,7 +574,7 @@ function ListingsTable() {
 
   async function statusChangeTwo(id) {
     axios.put(
-        "https://moveapi.onrender.com/api/listing/toggle/" + id,
+        "https://move-3dri.onrender.com/api/listing/toggle/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -656,7 +656,7 @@ function PendingListingsTable() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/adminAnalytics/getAllPendingListings", {
+      const response = await fetch("https://move-3dri.onrender.com/api/analytics/adminAnalytics/getAllPendingListings", {
         headers: { Authorization: userDetails },
       });
 
@@ -676,7 +676,7 @@ function PendingListingsTable() {
   async function statusChange(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/listing/verifyListing/" + id,
+        "https://move-3dri.onrender.com/api/listing/verifyListing/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -698,7 +698,7 @@ function PendingListingsTable() {
   async function statusChangeReject(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/listing/rejectListing/" + id,
+        "https://move-3dri.onrender.com/api/listing/rejectListing/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -788,7 +788,7 @@ function BookingsTable() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/adminAnalytics/getAllBookings", {
+      const response = await fetch("https://move-3dri.onrender.com/api/analytics/adminAnalytics/getAllBookings", {
         headers: { Authorization: userDetails },
       });
       var data = await response.json();
@@ -803,7 +803,7 @@ function BookingsTable() {
   async function BookingReject(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/booking/cancel/" + id,
+        "https://move-3dri.onrender.com/api/booking/cancel/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -907,7 +907,7 @@ function PendingBookingsTable() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/adminAnalytics/getAllPendingBookings", {
+      const response = await fetch("https://move-3dri.onrender.com/api/analytics/adminAnalytics/getAllPendingBookings", {
         headers: { Authorization: userDetails },
       });
       var data = await response.json();
@@ -937,7 +937,7 @@ function PendingBookingsTable() {
   async function rejectBooking(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/booking/reject/" + id,
+        "https://move-3dri.onrender.com/api/booking/reject/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -953,7 +953,7 @@ function PendingBookingsTable() {
         console.log(e);
       });
 
-      await fetch("https://moveapi.onrender.com/api/analytics/adminAnalytics/getAllPendingBookings", {
+      await fetch("https://move-3dri.onrender.com/api/analytics/adminAnalytics/getAllPendingBookings", {
       headers: { Authorization: userDetails },
     })
       .then((res) => {

@@ -12,7 +12,7 @@ const EditBooking = () => {
 
     async function getData(){   
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-        const response = await fetch("https://moveapi.onrender.com/api/booking/" + location.state.id, {
+        const response = await fetch("https://move-3dri.onrender.com/api/booking/" + location.state.id, {
             headers: { Authorization: userDetails },
         });
         console.log(response);
@@ -112,7 +112,7 @@ const EditBooking = () => {
 
         axios
     .put(
-      "https://moveapi.onrender.com/api/booking/" + location.state.id,
+      "https://move-3dri.onrender.com/api/booking/" + location.state.id,
       {
         car,
         pickupDate,

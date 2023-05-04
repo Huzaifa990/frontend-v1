@@ -6,7 +6,7 @@ const SignIn = () => {
     let email = document.getElementById("signInEmail").value;
     let password = document.getElementById("signInPassword").value;
 
-    axios.post("https://moveapi.onrender.com/api/auth/login",{
+    axios.post("https://move-3dri.onrender.com/api/auth/login",{
         email,
         password
     })

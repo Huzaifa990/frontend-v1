@@ -8,7 +8,7 @@ const sendData = ()=>{
   let email = document.getElementById("email").value;
   let subject = document.getElementById("subject").value;
   let message = document.getElementById("message").value;
-  axios.post("https://moveapi.onrender.com/api/contact",{
+  axios.post("https://move-3dri.onrender.com/api/contact",{
       name,
       email,
       subject,

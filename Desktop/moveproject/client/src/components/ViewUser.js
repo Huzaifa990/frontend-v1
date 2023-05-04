@@ -14,7 +14,7 @@ const ViewUser = () => {
   useEffect(() => {
     const names = async () => {
       const response = await fetch(
-        "https://moveapi.onrender.com/api/auth/getUserById/" + location.state.id,
+        "https://move-3dri.onrender.com/api/auth/getUserById/" + location.state.id,
         {
           headers: { Authorization: userDetails },
         }

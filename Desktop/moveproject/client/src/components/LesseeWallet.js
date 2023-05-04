@@ -18,11 +18,11 @@ export default function LesseeWallet() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/wallet/lesseeWallet", {
+      const response = await fetch("https://move-3dri.onrender.com/api/wallet/lesseeWallet", {
         headers: { Authorization: userDetails },
       });
 
-      const graphResponse = await fetch("https://moveapi.onrender.com/api/wallet/graphDataForLessee", {
+      const graphResponse = await fetch("https://move-3dri.onrender.com/api/wallet/graphDataForLessee", {
         headers: { Authorization: userDetails },
       });
 

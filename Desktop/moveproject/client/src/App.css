@@ -551,13 +551,13 @@ select:focus {
 }
 
 .dropdown .dropbtn {
-  font-size: 17px;
+  font-size: 20px;
   outline: none;
   color: white;
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
-  margin: 0;
+  margin-left: -15px;
 }
 
 .dropdown-content {
@@ -568,7 +568,6 @@ select:focus {
   min-width: 14.5vw;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  margin-top: 13px;
 }
 
 .dropdown-content a {
@@ -595,16 +594,6 @@ select:focus {
   display: block;
 }
 
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child),
-  .dropdown .dropbtn {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
 
 @media screen and (max-width: 600px) {
   .topnav.responsive {
@@ -2267,3 +2256,89 @@ select:focus {
   color: #11998e;
 }
 
+nav{
+  background: var(--secondary);
+  width: 100%;
+  height: 150px;
+}
+label.logo{
+  color: var(--primary);
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 40px;
+  font-weight: bold;
+}
+nav ul{
+  float: right;
+  margin-right: 20px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 0px;
+}
+nav ul li a{
+  color: white;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+a.active,a:hover{
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 1000px){
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    background: var(--secondary);
+    top: -100%;
+    text-align: left;
+    transition: all .5s;
+    z-index: 11;
+    overflow-y: scroll;
+  }
+  nav ul li{
+    display: grid;
+    margin: 15px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+  }
+  #check:checked ~ ul{
+    top: 80px;
+  }
+}
+section{
+  background: var(--secondary);
+  background-size: cover;
+}

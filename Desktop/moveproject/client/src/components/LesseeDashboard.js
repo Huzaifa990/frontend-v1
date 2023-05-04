@@ -25,7 +25,7 @@ export default function LesseeDashboard() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/lesseeAnalytics", {
+      const response = await fetch("http://localhost:8080/api/analytics/lesseeAnalytics", {
         headers: { Authorization: userDetails },
       });
 
@@ -46,7 +46,7 @@ export default function LesseeDashboard() {
   async function BookingReject(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/booking/cancel/" + id,
+        "http://localhost:8080/api/booking/cancel/" + id,
         {},
         {
           headers: { Authorization: userDetails },

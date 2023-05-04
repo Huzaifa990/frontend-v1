@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  var x = 0;
   function logout() {
     localStorage.removeItem("userName");
     localStorage.removeItem("userDetails");
@@ -11,8 +12,25 @@ const NavBar = () => {
     localStorage.removeItem("accountStatus");
     navigate("/");
     window.location.reload();
+    document.getElementById("NavCheck").style.top = "-100%";
   }
-  
+
+  function hideNavBar() {
+    document.getElementById("NavCheck").style.top = "-100%";
+    x = 0;
+  }
+
+  function showNavBar() {
+    document.getElementById("NavCheck").style.top = "80px";
+    x = 1;
+  }
+
+  function toggleNavBar() {
+    
+      x === 0 ? showNavBar() : hideNavBar();
+    
+  }
+
   console.log(localStorage.getItem("userName"));
   var userName = JSON.parse(localStorage.getItem("userName"));
   var accountType = JSON.parse(localStorage.getItem("accountType"));
@@ -29,7 +47,7 @@ const NavBar = () => {
               </a>
               <span className="text-body">|</span>
               <a className="text-body px-3" href="Greet.js">
-                <i className="fa fa-envelope mr-2"></i>MOVE@RENTALS.COM
+                <i className="fa fa-envelope mr-2"></i>F2019-297@BNU.EDU.PK
               </a>
             </div>
           </div>
@@ -55,142 +73,156 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className="container-fluid position-relative nav-bar p-0">
-        <div className="position-relative bg-dark px-lg-5 navbar-front">
-          <nav className="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
-            <Link to="/" className="navbar-brand">
-              <h1 className="text-uppercase text-primary mb-1">MOVE</h1>
-            </Link>
-            <button
-              type="button"
-              className="navbar-toggler"
-              data-toggle="collapse"
-              data-target="#navbarCollapse"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div
-              className="collapse navbar-collapse justify-content-between px-3"
-              id="navbarCollapse"
-            >
-              <div className="navbar-nav ml-auto py-0">
-                {accountType !== "Admin" ? (
-                  <Link to="/" className="nav-item nav-link active">
-                    Home
-                  </Link>
-                ) : null}
+      <div>
+        <link rel="stylesheet" href="style.css" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+        <nav>
+          <input type="checkbox" id="check" />
+          <label htmlFor="check" onClick={toggleNavBar} className="checkbtn">
+            <i className="fas fa-bars" />
+          </label>
+          <label className="logo">Move</label>
+          <ul id="NavCheck">
+            <li>
+              {" "}
+              {accountType !== "Admin" ? (
+                <Link onClick={hideNavBar} to="/" className="nav-item nav-link active">
+                  Home
+                </Link>
+              ) : null}
+            </li>
 
-                {accountType !== "Admin" ? (
-                  <Link to="/about" className="nav-item nav-link active">
-                    About
-                  </Link>
-                ) : null}
+            <li>
+              {accountType !== "Admin" ? (
+                <Link onClick={hideNavBar} to="/about" className="nav-item nav-link active">
+                  About
+                </Link>
+              ) : null}
+            </li>
 
-                {accountType !== "Admin" ? (
-                  <Link to="/services" className="nav-item nav-link active">
-                    Services
-                  </Link>
-                ) : null}
+            <li>
+              {accountType !== "Admin" ? (
+                <Link onClick={hideNavBar} to="/services" className="nav-item nav-link active">
+                  Services
+                </Link>
+              ) : null}
+            </li>
 
-                 {accountType !== "Admin" ? (
-                  <Link to="/termsandconditions" className="nav-item nav-link active">
-                    Terms & Conditions
-                  </Link>
-                ) : null}
+            <li>
+              {accountType !== "Admin" ? (
+                <Link onClick={hideNavBar} to="/listings" className="nav-item nav-link active">
+                  Car Listings
+                </Link>
+              ) : null}
+            </li>
 
-                {accountType !== "Admin" ? (
-                  <Link to="/listings" className="nav-item nav-link active">
-                    Car Listings
-                  </Link>
-                ) : null}
+            <li>
+              {accountType !== "Admin" ? (
+                <Link onClick={hideNavBar} to="/Contact" className="nav-item nav-link active">
+                  Contact
+                </Link>
+              ) : null}
+            </li>
 
-                {accountType !== "Admin" ? (
-                  <Link to="/Contact" className="nav-item nav-link active">
-                    Contact
-                  </Link>
-                ) : null}
+            <li>
+              {userName === null ? (
+                <Link onClick={hideNavBar} to="/signin" className="nav-item nav-link active">
+                  Sign In
+                </Link>
+              ) : (
+                <div>
+                  <div className="dropdown nav-item nav-link active">
+                    <Link className="dropbtn">
+                      {userName}
+                      <i style={{ paddingLeft: "10px" }} className="fa fa-caret-down"></i>
+                    </Link>
+                    <div className="dropdown-content">
+                      {userName !== null ? (
+                        accountType === "Admin" ? (
+                          <Link onClick={hideNavBar} to="/adminDashboard">
+                            Admin Dashboard
+                          </Link>
+                        ) : null
+                      ) : null}
+                      {userName !== null ? (
+                        <Link onClick={hideNavBar} to="/myProfile">
+                          My Profile
+                        </Link>
+                      ) : null}
+                      {userName !== null ? (
+                        accountType === "Lessor" && accountStatus === true ? (
+                          <Link onClick={hideNavBar} to="/myListings">
+                            My Listings
+                          </Link>
+                        ) : null
+                      ) : null}
 
-                {userName !== null ? (
-                  <button
-                    className="nav-item nav-link active"
-                    style={{ background: "none", border: "none", paddingBottom: "35px" }}
-                    onClick={logout}
-                  >
-                    Logout
-                  </button>
-                ) : null}
+                      {userName !== null ? (
+                        accountType === "Lessor" ? (
+                          <Link onClick={hideNavBar} to="/lessorDashboard">
+                            My Dashboard
+                          </Link>
+                        ) : null
+                      ) : null}
 
-                {userName === null ? (
-                  <Link to="/signin" className="nav-item nav-link active">
-                    Sign In
-                  </Link>
-                ) : (
-                  <div>
-                    <div className="dropdown nav-item nav-link active">
-                      <Link className="dropbtn">
-                        {" "}
-                        {userName}
-                        <i style={{ paddingLeft: "10px" }} className="fa fa-caret-down"></i>
-                      </Link>
-                      <div className="dropdown-content">
-                        {userName !== null ? (
-                          accountType === "Admin" ? (
-                            <Link to="/adminDashboard">Admin Dashboard</Link>
-                          ) : null
-                        ) : null}
-                        {userName !== null ? (
-                          <Link to="/myProfile">My Profile</Link>
-                        ) : null}
-                        {userName !== null ? (
-                          accountType === "Lessor" && accountStatus === true? (
-                            <Link to="/myListings">My Listings</Link>
-                          ) : null
-                        ) : null}
+                      {userName !== null ? (
+                        accountType === "Lessor" ? (
+                          <Link onClick={hideNavBar} to="/lessorWallet">
+                            My Wallet
+                          </Link>
+                        ) : null
+                      ) : null}
 
-                        {userName !== null ? (
-                          accountType === "Lessor" ? (
-                            <Link to="/lessorDashboard">My Dashboard</Link>
-                          ) : null
-                        ) : null}
+                      {userName !== null ? (
+                        accountType === "Lessee" ? (
+                          <Link onClick={hideNavBar} to="/lesseeWallet">
+                            My Wallet
+                          </Link>
+                        ) : null
+                      ) : null}
 
-                        {userName !== null ? (
-                          accountType === "Lessor"? (
-                            <Link to="/lessorWallet">My Wallet</Link>
-                          ) : null
-                        ) : null}
+                      {userName !== null ? (
+                        accountType === "Lessee" ? (
+                          <Link onClick={hideNavBar} to="/lesseeDashboard">
+                            My Dashboard
+                          </Link>
+                        ) : null
+                      ) : null}
 
-                        {userName !== null ? (
-                          accountType === "Lessee"? (
-                            <Link to="/lesseeWallet">My Wallet</Link>
-                          ) : null
-                        ) : null}
-              
-              
-                        {userName !== null ? (
-                          accountType === "Lessee" ? (
-                            <Link to="/lesseeDashboard">My Dashboard</Link>
-                          ) : null
-                        ) : null}
+                      {userName !== null ? (
+                        accountType === "Lessor" && accountStatus === true ? (
+                          <Link onClick={hideNavBar} to="/addListings">
+                            List a Car
+                          </Link>
+                        ) : null
+                      ) : null}
 
-                        {userName !== null ? (
-                          accountType === "Lessor" && accountStatus === true? (
-                            <Link to="/addListings">List a Car</Link>
-                          ) : null
-                        ) : null}
-
-                        {userName !== null ? (
-                          accountType === "Lessee" && accountStatus === true? (
-                            <Link to="/myBookings">My Bookings</Link>
-                          ) : null
-                        ) : null}
-                      </div>
+                      {userName !== null ? (
+                        accountType === "Lessee" && accountStatus === true ? (
+                          <Link onClick={hideNavBar} to="/myBookings">
+                            My Bookings
+                          </Link>
+                        ) : null
+                      ) : null}
                     </div>
                   </div>
-                )}
-              </div>
-            </div>
-          </nav>
-        </div>
+                </div>
+              )}
+            </li>
+
+            <li>
+              {userName !== null ? (
+                <Link onClick={logout} className="nav-item nav-link active">
+                  Logout
+                </Link>
+              ) : null}
+            </li>
+          </ul>
+        </nav>
+        <section />
       </div>
     </div>
   );

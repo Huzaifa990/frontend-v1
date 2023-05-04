@@ -7,6 +7,9 @@ var picture = [];
 
 const AddListings = () => {
   
+
+
+
   function readFile(e) {
     let files = e.target.files;
     for (let i = 0; i < files.length; i++) {
@@ -68,7 +71,7 @@ const sendData = () => {
   console.log(picture);
   axios
     .post(
-      "http://localhost:8080/api/listing/",
+      "https://moveapi.onrender.com/api/listing/",
       {
         carName,
         company,
@@ -233,51 +236,21 @@ const sendData = () => {
     let transmissio = document.getElementById("transmission");
     let transmission = transmissio[transmissio.selectedIndex].value;
 
-    if (carName.trim() === "") {
-      document.getElementById("errorMessage").innerText = "Please enter Car Name!";
-      document.getElementById("errorApi").style.visibility = "visible";
-      document.getElementById("errorApi").style.position = "relative";
-    } else if (variant.trim() === "") {
-      document.getElementById("errorMessage").innerText = "Please enter Car Variant!";
-      document.getElementById("errorApi").style.visibility = "visible";
-      document.getElementById("errorApi").style.position = "relative";
-    } else if (document.getElementById("modelYear").value.trim() === "") {
-      document.getElementById("errorMessage").innerText = "Please enter Car Model!";
-      document.getElementById("errorApi").style.visibility = "visible";
-      document.getElementById("errorApi").style.position = "relative";
-    } else if (document.getElementById("mileage").value.trim() === "") {
-      document.getElementById("errorMessage").innerText = "Please enter Mileage!";
-      document.getElementById("errorApi").style.visibility = "visible";
-      document.getElementById("errorApi").style.position = "relative";
-    } else if (location.trim() === "") {
-      document.getElementById("errorMessage").innerText = "Please enter Location!";
-      document.getElementById("errorApi").style.visibility = "visible";
-      document.getElementById("errorApi").style.position = "relative";
-    } else if (transmission === "Choose Transmission") {
-      document.getElementById("errorMessage").innerText = "Please select transmission!";
-      document.getElementById("errorApi").style.visibility = "visible";
-      document.getElementById("errorApi").style.position = "relative";
+    var payload = {
+      "Car Variant": variant,
+      "Car Name":carName,
+      "Model Year":model,
+      "Transmission": transmission,
+      "Mileage": mileage,
+      "Location": location
     }
-
-    else {
-      document.getElementById("errorApi").style.visibility = "hidden";
-      document.getElementById("errorApi").style.position = "absolute";
-      var payload = {
-        "Car Variant": variant,
-        "Car Name":carName,
-        "Model Year":model,
-        "Transmission": transmission,
-        "Mileage": mileage,
-        "Location": location
-      }
-      console.log(payload);
-      axios.post("https://move-deploy.herokuapp.com/predict", payload).then((res)=>{
-        console.log(res);
-        document.getElementById("userPrice").value = res.data.prediction;
-      }).catch((e)=>{
-        console.log(e);
-      })
-    }
+    console.log(payload);
+    axios.post("https://move-deploy.herokuapp.com/predict", payload).then((res)=>{
+      console.log(res);
+      document.getElementById("userPrice").innerText = res.prediction;
+    }).catch((e)=>{
+      console.log(e);
+    })
   }
 
   return (

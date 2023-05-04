@@ -20,7 +20,7 @@ const ChangePassword = () => {
     let confirmNewPassword = document.getElementById("confirmNewPassword").value;
 
 
-    axios.put("http://localhost:8080/api/auth/updatePassword",{
+    axios.put("https://moveapi.onrender.com/api/auth/updatePassword",{
         password,
         newPassword,
         confirmNewPassword

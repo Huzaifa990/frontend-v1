@@ -9,7 +9,7 @@ export default function ActivateAccount() {
   const navigate = useNavigate();
 
   axios
-    .put("http://localhost:8080/api/auth/activateAccount", {
+    .put("https://moveapi.onrender.com/api/auth/activateAccount", {
       otp,
     })
     .then(() => {

@@ -7,7 +7,7 @@ import axios from "axios";
 
 const MyListings = () => {
   var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-  const [ingnored, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [ingnored, forceUpdate] = useReducer(x=>x+1,0);
   // Creating use states for data and loader
 
   const [name, setName] = useState([]);
@@ -23,7 +23,7 @@ const MyListings = () => {
 
   const names = async () => {
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-    const response = await fetch("http://localhost:8080/api/listing/my-listings", {
+    const response = await fetch("https://moveapi.onrender.com/api/listing/my-listings", {
       headers: { Authorization: userDetails },
     });
     console.log(response);
@@ -60,35 +60,28 @@ const MyListings = () => {
     goToDelete(id);
   }
 
-  // Listing activating/ deactivating
+  // Listing activating/ deactivating 
 
-  async function statusChange(id) {
+  async function statusChange(id){
     setSwitchState(true);
-    axios
-      .put(
-        "http://localhost:8080/api/listing/toggle/" + id,
-        {},
-        {
-          headers: { Authorization: userDetails },
-        }
-      )
-      .then((res) => {
+    axios.put("https://moveapi.onrender.com/api/listing/toggle/"+id, 
+    {},
+    {
+        headers: { Authorization: userDetails },
+    }).then((res)=>{
         console.log(res);
-      })
-      .catch((e) => {
+    }).catch((e)=>{
         console.log(e);
-      });
-
-    await fetch("http://localhost:8080/api/listing/my-listings", {
-      headers: { Authorization: userDetails },
     })
-      .then(() => {
-        setSwitchState(false);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
 
+    await fetch("https://moveapi.onrender.com/api/listing/my-listings", {
+      headers: { Authorization: userDetails },
+    }).then(()=>{
+        setSwitchState(false);
+    }).catch((e)=>{
+        console.error(e);
+    })
+    
     forceUpdate();
   }
 
@@ -101,6 +94,7 @@ const MyListings = () => {
           <Loader />
         ) : name.length > 0 ? (
           name.map((data) => {
+          
             if (data !== null) {
               return (
                 <>
@@ -160,32 +154,11 @@ const MyListings = () => {
 
                     <span>
                       <h5>PKR {data.rentPerDay}/Day</h5>
-                      {data.approved === "Accepted" ? (
-                        <>
-                          <h3>
-                            {data.status === true ? (
-                              <>
-                                <span style={{ color: "green" }}> Active</span>
-                              </>
-                            ) : (
-                              <span style={{ color: "#6c757d" }}> Inactive</span>
-                            )}
-                            <ReactSwitch
-                              className="switch"
-                              disabled={switchState}
-                              checked={data.status}
-                              onChange={() => statusChange(data._id)}
-                            />
-                          </h3>
-                          <br />
-                        </>
-                      ) : data.approved === "Rejected" ? (
-                        <h2>Listing Rejected!</h2>
-                      ) : (
-                        <div>
-                          <h2>Processing Listing!</h2>
-                        </div>
-                      )}
+                      {data.approved === true?<><h3>
+                        {data.status === true ? <><span style={{ color: "green" }}> Active</span></> : <span style={{ color: "#6c757d" }}> Inactive</span>}
+                        <ReactSwitch className="switch" disabled={switchState} checked={data.status} onChange={()=>statusChange(data._id)}/>
+                      </h3>  
+                      <br /></>:<div><h2>Processing Listing!</h2></div>}
                       <br />
                       <button className="btn btn-primary px-3" onClick={() => showId(data._id)}>
                         View Listing

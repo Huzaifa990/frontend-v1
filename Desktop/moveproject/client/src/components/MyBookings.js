@@ -29,7 +29,7 @@ const MyBookings = () => {
   //Function defined to fetch data from api for all the bookings and store it in a variable.
   const names = async () => {
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-    const response = await fetch("http://localhost:8080/api/booking/myBookings", {
+    const response = await fetch("https://moveapi.onrender.com/api/booking/myBookings", {
       headers: { Authorization: userDetails },
     });
     const data = await response.json();
@@ -77,7 +77,7 @@ const MyBookings = () => {
   async function BookingReject(id) {
     axios
       .put(
-        "http://localhost:8080/api/booking/cancel/" + id,
+        "https://moveapi.onrender.com/api/booking/cancel/" + id,
         {},
         {
           headers: { Authorization: userDetails },

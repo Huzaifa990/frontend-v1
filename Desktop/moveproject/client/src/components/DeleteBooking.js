@@ -22,7 +22,7 @@ const DeleteBooking = () => {
     var CarId = location.state.id;
     axios
       .put(
-        "http://localhost:8080/api/booking/cancel/" + CarId,
+        "https://moveapi.onrender.com/api/booking/cancel/" + CarId,
         {},
         {
           headers: { Authorization: userDetails },

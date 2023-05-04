@@ -11,7 +11,7 @@ const ViewBookingDashBoard = () => {
     const names = async () => {
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
         console.log("User ID =>", userDetails);
-        const response = await fetch("http://localhost:8080/api/booking/" + location.state.id,{
+        const response = await fetch("https://moveapi.onrender.com/api/booking/" + location.state.id,{
           headers: { Authorization: userDetails },
         });
         const data = await response.json();

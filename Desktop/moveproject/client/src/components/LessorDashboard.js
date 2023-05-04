@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useReducer } from "react";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar, Line,  } from "react-chartjs-2";
 import "chart.js/auto";
 import Loader from "./Loader";
 import ReactSwitch from "react-switch";
@@ -14,6 +14,7 @@ import unable from "../img/unable3.png";
 import reject from "../img/remove.png";
 import left_arr from "../img/backward.png";
 import right_arr from "../img/forward.png";
+
 
 export default function LessorDashboard() {
   const [activeOption, setActiveOption] = useState("allListings");
@@ -29,12 +30,9 @@ export default function LessorDashboard() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch(
-        "http://localhost:8080/api/analytics/lessorAnalytics?pageSize=10&page=0",
-        {
-          headers: { Authorization: userDetails },
-        }
-      );
+      const response = await fetch("https://moveapi.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page=0", {
+        headers: { Authorization: userDetails },
+      });
 
       var data = await response.json();
       console.log(data);
@@ -45,6 +43,7 @@ export default function LessorDashboard() {
     getData();
   }, [userDetails]);
 
+  
   return (
     <div className="stats-section">
       <NotificationContainer />
@@ -137,6 +136,7 @@ export default function LessorDashboard() {
                       beginAtZero: true,
                       ticks: {
                         color: "white",
+                       
                       },
                       grid: {
                         color: "rgba(185, 185, 185, 0.427)",
@@ -247,6 +247,7 @@ export default function LessorDashboard() {
               </div>
             </div>
           </div>
+
           <h1>Your Cars: </h1>
           <br /> <br />
           <div className="table-responsive table--no-card m-b-40">
@@ -298,29 +299,28 @@ function AllListings() {
   const [switchState, setSwitchState] = useState(false);
   var [pageNum, setPageNum] = useState(0);
 
+
   var navigate = useNavigate();
   var userDetails = JSON.parse(localStorage.getItem("userDetails"));
   const [loading, setLoading] = useState(true);
   var [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
+
     async function getData() {
-      const response = await fetch(
-        "http://localhost:8080/api/analytics/lessorAnalytics?pageSize=10&page=" + pageNum,
-        {
-          headers: { Authorization: userDetails },
-        }
-      );
+      const response = await fetch("https://moveapi.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page="+pageNum, {
+        headers: { Authorization: userDetails },
+      });
       var data = await response.json();
       console.log(data);
       setStats(data.myListings);
       setLoading(false);
-      setTotalPages(Math.ceil(data.analytics.carsListed / 10));
+      setTotalPages(Math.ceil(data.analytics.carsListed/10));
       console.log(totalPages);
     }
 
     getData();
-  }, [userDetails, ingnored, pageNum, totalPages]);
+  }, [userDetails, ingnored,pageNum, totalPages]);
 
   function goToListings(id) {
     navigate("/viewListings", { state: { id: id } });
@@ -330,7 +330,7 @@ function AllListings() {
     setSwitchState(true);
     axios
       .put(
-        "http://localhost:8080/api/listing/toggle/" + id,
+        "https://moveapi.onrender.com/api/listing/toggle/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -345,7 +345,7 @@ function AllListings() {
         NotificationManager.error("Listing Update Failed  ");
       });
 
-    await fetch("http://localhost:8080/api/analytics/lessorAnalytics?pageSize=10&page=" + pageNum, {
+      await fetch("https://moveapi.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page="+pageNum, {
       headers: { Authorization: userDetails },
     })
       .then(() => {
@@ -367,7 +367,6 @@ function AllListings() {
                 <th>Car Name</th>
                 <th>Company</th>
                 <th>Date Listed</th>
-                <th>Total Bookings Received</th>
                 <th class="text-right">Rent Per Day</th>
                 <th class="text-right">Status</th>
                 <th class="text-right">Manage</th>
@@ -382,7 +381,6 @@ function AllListings() {
                     <td onClick={() => goToListings(item._id)}>
                       {moment.utc(item.listedDate).format("llll")}
                     </td>
-                    <td onClick={() => goToListings(item._td)}>{item.carBookedCount}</td>
                     <td onClick={() => goToListings(item._id)} class="text-right">
                       {item.rentPerDay} PKR
                     </td>
@@ -420,48 +418,27 @@ function AllListings() {
           <Loader2 />
         )}
       </table>
-      {totalPages > 1 ? (
-        <>
-          <div className="pagination">
-            <div className="pagi-cons">
-              {pageNum > 0 ? (
-                <>
-                  <img
-                    src={left_arr}
-                    alt="left"
-                    width="25px"
-                    onClick={() => setPageNum(--pageNum)}
-                  />
-                </>
-              ) : null}
-
-              <span>
-                Page {pageNum + 1} of {totalPages}
-              </span>
-              {pageNum + 1 !== totalPages ? (
-                <>
-                  <img
-                    src={right_arr}
-                    alt="right"
-                    width="25px"
-                    onClick={() => setPageNum(++pageNum)}
-                  />
-                </>
-              ) : null}
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="pagination">
-            <div className="pagi-cons">
-              <span>
-                Page {pageNum + 1} of {totalPages}
-              </span>
-            </div>
-          </div>
-        </>
-      )}
+      {totalPages > 1?<>
+        <div className="pagination">
+        <div className="pagi-cons">
+          {pageNum > 0? <>
+            <img src={left_arr} alt="left" width="25px" onClick={()=>setPageNum(--pageNum)}/>
+          </>:null}
+          
+          <span>Page {pageNum+1} of {totalPages}</span>
+          {pageNum+1 !== totalPages? <>
+            <img src={right_arr} alt="right"  width="25px"  onClick={()=>setPageNum(++pageNum)}/>
+          </>:null}
+        </div>
+      </div>
+      </>:<>
+      <div className="pagination">
+        <div className="pagi-cons">
+          <span>Page {pageNum+1} of {totalPages}</span>
+        </div>
+      </div>
+      </>}
+      
     </>
   );
 }
@@ -474,23 +451,20 @@ function AllBookings() {
   var navigate = useNavigate();
   var userDetails = JSON.parse(localStorage.getItem("userDetails"));
   const [loading, setLoading] = useState(true);
-  const [show, setShow] = useState();
+  const [show,setShow]=useState();
   const [update, setUpdate] = useState(false);
   const [fees, setFees] = useState();
   var [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch(
-        "http://localhost:8080/api/booking/getLessorBookings?pageSize=10&page=" + pageNum,
-        {
-          headers: { Authorization: userDetails },
-        }
-      );
+      const response = await fetch("https://moveapi.onrender.com/api/booking/getLessorBookings?pageSize=10&page="+pageNum, {
+        headers: { Authorization: userDetails },
+      });
       var data = await response.json();
       console.log(data);
       setStats(data.bookings);
-      setTotalPages(Math.ceil(data.count / 10));
+      setTotalPages(Math.ceil(data.count/10));
       setLoading(false);
     }
 
@@ -501,10 +475,11 @@ function AllBookings() {
     navigate("/viewListings", { state: { id: id } });
   }
 
+  
   async function BookingReject(id) {
     axios
       .put(
-        "http://localhost:8080/api/booking/cancel/" + id,
+        "https://moveapi.onrender.com/api/booking/cancel/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -545,7 +520,7 @@ function AllBookings() {
   async function statusChange(id) {
     axios
       .put(
-        "http://localhost:8080/api/booking/markAsComplete/" + id,
+        "https://moveapi.onrender.com/api/booking/markAsComplete/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -559,7 +534,7 @@ function AllBookings() {
         console.log(e);
       });
 
-    await fetch("http://localhost:8080/api/booking/getLessorBookings?pageSize=10&page=" + pageNum, {
+    await fetch("https://moveapi.onrender.com/api/booking/getLessorBookings?pageSize=10&page="+pageNum, {
       headers: { Authorization: userDetails },
     })
       .then((res) => {})
@@ -647,26 +622,14 @@ function AllBookings() {
                         </td>
                       </>
                     )}
-                    <div class="popup-container" id="pop" onClick={toggleOff}>
+                     <div class="popup-container" id="pop" onClick={toggleOff}>
                       <div class="popup">
-                        <h2 style={{ color: "#f77d0a" }}>
-                          Are you sure you want to cancel this booking?
-                        </h2>
+                        <h2 style={{ color: "#f77d0a" }}>Are you sure you want to cancel this booking?</h2>
                         <br />
                         <p>You will be charged PKR {fees} for cancelling this booking!</p>
-                        <button
-                          className="btn btn-secondaryDelete py-3 px-5 cancel-btn"
-                          onClick={() => toggleOff()}
-                        >
-                          Go Back
-                        </button>
-                        <button
-                          className="btn btn-primaryDelete py-3 px-5 cancel-btn"
-                          onClick={() => BookingReject(show?._id)}
-                        >
-                          Cancel Booking
-                        </button>
-                      </div>
+                        <button className="btn btn-secondaryDelete py-3 px-5 cancel-btn" onClick={() => toggleOff()}>Go Back</button>
+                        <button className="btn btn-primaryDelete py-3 px-5 cancel-btn" onClick={() => BookingReject(show?._id)}>Cancel Booking</button>
+                        </div>
                     </div>
                   </tr>
                 );
@@ -677,48 +640,26 @@ function AllBookings() {
           <Loader2 />
         )}
       </table>
-      {totalPages > 1 ? (
-        <>
-          <div className="pagination">
-            <div className="pagi-cons">
-              {pageNum > 0 ? (
-                <>
-                  <img
-                    src={left_arr}
-                    alt="left"
-                    width="25px"
-                    onClick={() => setPageNum(--pageNum)}
-                  />
-                </>
-              ) : null}
-
-              <span>
-                Page {pageNum + 1} of {totalPages}
-              </span>
-              {pageNum + 1 !== totalPages ? (
-                <>
-                  <img
-                    src={right_arr}
-                    alt="right"
-                    width="25px"
-                    onClick={() => setPageNum(++pageNum)}
-                  />
-                </>
-              ) : null}
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="pagination">
-            <div className="pagi-cons">
-              <span>
-                Page {pageNum + 1} of {totalPages}
-              </span>
-            </div>
-          </div>
-        </>
-      )}
+      {totalPages > 1?<>
+        <div className="pagination">
+        <div className="pagi-cons">
+          {pageNum > 0? <>
+            <img src={left_arr} alt="left" width="25px" onClick={()=>setPageNum(--pageNum)}/>
+          </>:null}
+          
+          <span>Page {pageNum+1} of {totalPages}</span>
+          {pageNum+1 !== totalPages? <>
+            <img src={right_arr} alt="right"  width="25px"  onClick={()=>setPageNum(++pageNum)}/>
+          </>:null}
+        </div>
+      </div>
+      </>:<>
+      <div className="pagination">
+        <div className="pagi-cons">
+          <span>Page {pageNum+1} of {totalPages}</span>
+        </div>
+      </div>
+      </>}
     </>
   );
 }
@@ -731,22 +672,19 @@ function PendingBookings() {
   var navigate = useNavigate();
   var userDetails = JSON.parse(localStorage.getItem("userDetails"));
   const [loading, setLoading] = useState(true);
-  const [show, setShow] = useState();
+  const [show,setShow]=useState();
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch(
-        "http://localhost:8080/api/booking/getLessorPendingBookings?pageSize=10&page=" + pageNum,
-        {
-          headers: { Authorization: userDetails },
-        }
-      );
+      const response = await fetch("https://moveapi.onrender.com/api/booking/getLessorPendingBookings?pageSize=10&page="+pageNum, {
+        headers: { Authorization: userDetails },
+      });
       var data = await response.json();
       console.log(data);
       setStats(data.bookings);
       setLoading(false);
-      setTotalPages(Math.ceil(data.count / 10));
+      setTotalPages(Math.ceil(data.count/10));
     }
 
     getData();
@@ -774,7 +712,7 @@ function PendingBookings() {
   async function rejectBooking(id) {
     axios
       .put(
-        "http://localhost:8080/api/booking/reject/" + id,
+        "https://moveapi.onrender.com/api/booking/reject/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -789,13 +727,9 @@ function PendingBookings() {
         console.log(e);
       });
 
-    await fetch(
-      "http://localhost:8080/api/analytics/adminAnalytics/getAllPendingBookings?pageSize=10&page=" +
-        pageNum,
-      {
-        headers: { Authorization: userDetails },
-      }
-    )
+      await fetch("https://moveapi.onrender.com/api/analytics/adminAnalytics/getAllPendingBookings?pageSize=10&page="+pageNum, {
+      headers: { Authorization: userDetails },
+    })
       .then((res) => {
         console.log(res);
       })
@@ -806,10 +740,11 @@ function PendingBookings() {
     forceUpdate();
   }
 
+
   async function acceptBooking(id) {
     axios
       .put(
-        "http://localhost:8080/api/booking/approve/" + id,
+        "https://moveapi.onrender.com/api/booking/approve/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -823,12 +758,9 @@ function PendingBookings() {
         console.log(e);
       });
 
-    await fetch(
-      "http://localhost:8080/api/booking/getLessorPendingBookings?pageSize=10&page=" + pageNum,
-      {
-        headers: { Authorization: userDetails },
-      }
-    )
+    await fetch("https://moveapi.onrender.com/api/booking/getLessorPendingBookings?pageSize=10&page="+pageNum, {
+      headers: { Authorization: userDetails },
+    })
       .then(() => {})
       .catch((e) => {
         console.log(e);
@@ -882,24 +814,12 @@ function PendingBookings() {
                     </td>
                     <div class="popup-container" id="pop" onClick={toggleOff}>
                       <div class="popup">
-                        <h2 style={{ color: "#f77d0a" }}>
-                          Are you sure you want to reject this booking?
-                        </h2>
+                        <h2 style={{ color: "#f77d0a" }}>Are you sure you want to reject this booking?</h2>
                         <br />
                         <p>You will be charged PKR 1000 for rejecting this booking!</p>
-                        <button
-                          className="btn btn-secondaryDelete py-3 px-5 cancel-btn"
-                          onClick={() => toggleOff()}
-                        >
-                          Go Back
-                        </button>
-                        <button
-                          className="btn btn-primaryDelete py-3 px-5 cancel-btn"
-                          onClick={() => rejectBooking(show?._id)}
-                        >
-                          Cancel Booking
-                        </button>
-                      </div>
+                        <button className="btn btn-secondaryDelete py-3 px-5 cancel-btn" onClick={() => toggleOff()}>Go Back</button>
+                        <button className="btn btn-primaryDelete py-3 px-5 cancel-btn" onClick={() => rejectBooking(show?._id)}>Cancel Booking</button>
+                        </div>
                     </div>
                   </tr>
                 );
@@ -910,48 +830,26 @@ function PendingBookings() {
           <Loader2 />
         )}
       </table>
-      {totalPages > 1 ? (
-        <>
-          <div className="pagination">
-            <div className="pagi-cons">
-              {pageNum > 0 ? (
-                <>
-                  <img
-                    src={left_arr}
-                    alt="left"
-                    width="25px"
-                    onClick={() => setPageNum(--pageNum)}
-                  />
-                </>
-              ) : null}
-
-              <span>
-                Page {pageNum + 1} of {totalPages}
-              </span>
-              {pageNum + 1 !== totalPages ? (
-                <>
-                  <img
-                    src={right_arr}
-                    alt="right"
-                    width="25px"
-                    onClick={() => setPageNum(++pageNum)}
-                  />
-                </>
-              ) : null}
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="pagination">
-            <div className="pagi-cons">
-              <span>
-                Page {pageNum + 1} of {totalPages}
-              </span>
-            </div>
-          </div>
-        </>
-      )}
+      {totalPages > 1?<>
+        <div className="pagination">
+        <div className="pagi-cons">
+          {pageNum > 0? <>
+            <img src={left_arr} alt="left" width="25px" onClick={()=>setPageNum(--pageNum)}/>
+          </>:null}
+          
+          <span>Page {pageNum+1} of {totalPages}</span>
+          {pageNum+1 !== totalPages? <>
+            <img src={right_arr} alt="right"  width="25px"  onClick={()=>setPageNum(++pageNum)}/>
+          </>:null}
+        </div>
+      </div>
+      </>:<>
+      <div className="pagination">
+        <div className="pagi-cons">
+          <span>Page {pageNum+1} of {totalPages}</span>
+        </div>
+      </div>
+      </>}
     </>
   );
 }

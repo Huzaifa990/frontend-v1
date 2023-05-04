@@ -20,7 +20,7 @@ const EditListing = () => {
 
       async function picture(){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-        const response = await fetch("http://localhost:8080/api/listing/" + location.state.id, {
+        const response = await fetch("https://moveapi.onrender.com/api/listing/" + location.state.id, {
           // 👇️ Sending AUTH TOKEN to the API
             headers: { Authorization: userDetails },
         });
@@ -41,7 +41,7 @@ const EditListing = () => {
     async function getData(){
 
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-        const response = await fetch("http://localhost:8080/api/listing/" + location.state.id, {
+        const response = await fetch("https://moveapi.onrender.com/api/listing/" + location.state.id, {
           // 👇️ Sending AUTH TOKEN to the API
             headers: { Authorization: userDetails },
         });
@@ -64,9 +64,6 @@ const EditListing = () => {
     document.getElementById("location").value = data.location;
     document.getElementById("userPrice").value = data.rentPerDay;
     document.getElementById("carNum").value = data.carNum;
-    document.getElementById("fuelEconomy").value = data.fuelEconomy;
-
-
     for(var i = 0; i < data.picture.length; i++){
       oldPictures.push(data.picture[i]);
     }
@@ -80,6 +77,8 @@ const EditListing = () => {
     }
   }
 
+  window.onload = function(){
+    document.querySelector("#inp").addEventListener("change", readFile);
 
     function readFile(e) {
       let files = e.target.files;
@@ -88,17 +87,27 @@ const EditListing = () => {
           var reader = new FileReader();
           reader.onload = () => {
             document.getElementsByClassName("inpp")[i].value = reader.result;  
-            setPicture(pictures.concat(reader.result));
           };
           reader.readAsDataURL(file);
         })(files[i]);
-      }  
+      }
+      setTimeout(tranferData, 1000);   
     }
 
-   
+    function tranferData() {
+      var picture = [];
+      var space = document.getElementsByClassName("inpp");
+      for (var i = 0; i < space.length; i++) {
+        var data = space[i].value;
+        if (data !== "") {
+          picture.push(space[i].value);
+        }
+      } 
+      setPicture((previousData)=>previousData.concat(picture));
+    }
+  }
   // 👇️ Allows user to edit and update data 
   function editData(){
-    alert(pictures);
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
     const headers = {
       // 👇️ Sending AUTH TOKEN to the API
@@ -114,11 +123,10 @@ const EditListing = () => {
     let transmissio = document.getElementById("transmission");
     let transmission = transmissio[transmissio.selectedIndex].value;
     let carNum = document.getElementById("carNum").value;
-    let fuelEconomy = document.getElementById("fuelEconomy").value;
     // 👇️ Axios command to edit and update data 
     axios
     .put(
-      "http://localhost:8080/api/listing/" + CarId,
+      "https://moveapi.onrender.com/api/listing/" + CarId,
       {
         carName,
         company,
@@ -129,7 +137,6 @@ const EditListing = () => {
         rentPerDay,
         picture: pictures,
         carNum,
-        fuelEconomy,
       },
       {
         headers: headers,
@@ -306,18 +313,6 @@ const EditListing = () => {
               id="carNum"
             />
           </div>
-
-          <div className="col-6 form-group">
-            <label for="">Fuel Mileage (KM/L):</label>
-            <input
-              type="number"
-              className="form-control p-4"
-              placeholder="eg: 10.2"
-              required="required"
-              id="fuelEconomy"
-            />
-          </div>
-
         </div>
         <br />
         <div className="row">
@@ -355,7 +350,6 @@ const EditListing = () => {
               id="inp"
               accept="image/*"
               multiple
-              onChange={readFile}
             />
             <br /> <br />
             <div id="selected-images">

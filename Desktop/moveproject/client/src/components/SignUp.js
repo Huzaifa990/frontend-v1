@@ -32,7 +32,7 @@ const SignUp = () => {
       }
     }
     axios
-      .post("http://localhost:8080/api/auth/sign-up", {
+      .post("https://moveapi.onrender.com/api/auth/sign-up", {
         name,
         email,
         password,
@@ -133,20 +133,6 @@ const SignUp = () => {
           document.getElementById("errorApi").style.visibility = "visible";
           document.getElementById("errorApi").style.position = "relative";
         }
-        else if (e.response.data.error.profilePicture !== undefined) {
-          document.getElementById("name").style.border = "none";
-          document.getElementById("email").style.border = "none";
-          document.getElementById("password").style.border = "none";
-          document.getElementById("confirmPassword").style.border = "none";
-          document.getElementById("accountType").style.border = "2px solid crimson";
-          document.getElementById("cnic").style.border = "none";
-          document.getElementById("phoneNumber").style.border = "none";
-
-          document.getElementById("errorMessage").innerText = e.response.data.error.profilePicture;
-          document.getElementById("errorApi").style.visibility = "visible";
-          document.getElementById("errorApi").style.position = "relative";
-        }
-        
       });
   };
 

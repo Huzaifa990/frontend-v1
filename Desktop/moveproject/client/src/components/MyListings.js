@@ -23,7 +23,7 @@ const MyListings = () => {
 
   const names = async () => {
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-    const response = await fetch("http://localhost:8080/api/listing/my-listings", {
+    const response = await fetch("https://move-3dri.onrender.com/api/listing/my-listings", {
       headers: { Authorization: userDetails },
     });
     console.log(response);
@@ -66,7 +66,7 @@ const MyListings = () => {
     setSwitchState(true);
     axios
       .put(
-        "http://localhost:8080/api/listing/toggle/" + id,
+        "https://move-3dri.onrender.com/api/listing/toggle/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -79,7 +79,7 @@ const MyListings = () => {
         console.log(e);
       });
 
-    await fetch("http://localhost:8080/api/listing/my-listings", {
+    await fetch("https://move-3dri.onrender.com/api/listing/my-listings", {
       headers: { Authorization: userDetails },
     })
       .then(() => {

@@ -31,7 +31,7 @@ const SignUp = () => {
       }
     }
     axios
-      .post("https://moveapi.onrender.com/api/auth/sign-up", {
+      .post("https://move-3dri.onrender.com/api/auth/sign-up", {
         name,
         email,
         password,

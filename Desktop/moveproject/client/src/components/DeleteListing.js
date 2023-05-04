@@ -16,7 +16,7 @@ const DeleteListing = () => {
     async function getData(){
 
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-        const response = await fetch("https://moveapi.onrender.com/api/listing/" + location.state.id, {
+        const response = await fetch("https://move-3dri.onrender.com/api/listing/" + location.state.id, {
             headers: { Authorization: userDetails },
         });
         console.log(response);
@@ -36,7 +36,7 @@ const DeleteListing = () => {
 
 
     axios.delete(
-      "https://moveapi.onrender.com/api/listing/" + CarId,
+      "https://move-3dri.onrender.com/api/listing/" + CarId,
       {
         headers: headers,
       }

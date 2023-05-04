@@ -20,7 +20,7 @@ const EditListing = () => {
 
       async function picture(){
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-        const response = await fetch("http://localhost:8080/api/listing/" + location.state.id, {
+        const response = await fetch("https://move-3dri.onrender.com/api/listing/" + location.state.id, {
           // 👇️ Sending AUTH TOKEN to the API
             headers: { Authorization: userDetails },
         });
@@ -41,7 +41,7 @@ const EditListing = () => {
     async function getData(){
 
         var userDetails = JSON.parse(localStorage.getItem("userDetails"));
-        const response = await fetch("http://localhost:8080/api/listing/" + location.state.id, {
+        const response = await fetch("https://move-3dri.onrender.com/api/listing/" + location.state.id, {
           // 👇️ Sending AUTH TOKEN to the API
             headers: { Authorization: userDetails },
         });
@@ -118,7 +118,7 @@ const EditListing = () => {
     // 👇️ Axios command to edit and update data 
     axios
     .put(
-      "http://localhost:8080/api/listing/" + CarId,
+      "https://move-3dri.onrender.com/api/listing/" + CarId,
       {
         carName,
         company,

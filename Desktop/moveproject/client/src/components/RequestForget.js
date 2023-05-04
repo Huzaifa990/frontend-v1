@@ -6,7 +6,7 @@ const RequestForget = () => {
     let email = document.getElementById("signInEmail").value;
     
 
-    axios.post("http://localhost:8080/api/auth/forgotPassword",{
+    axios.post("https://move-3dri.onrender.com/api/auth/forgotPassword",{
         email,
     })
     .then((res) => {

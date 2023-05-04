@@ -30,7 +30,7 @@ export default function LessorDashboard() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page=0", {
+      const response = await fetch("https://move-3dri.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page=0", {
         headers: { Authorization: userDetails },
       });
 
@@ -308,7 +308,7 @@ function AllListings() {
   useEffect(() => {
 
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page="+pageNum, {
+      const response = await fetch("https://move-3dri.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page="+pageNum, {
         headers: { Authorization: userDetails },
       });
       var data = await response.json();
@@ -330,7 +330,7 @@ function AllListings() {
     setSwitchState(true);
     axios
       .put(
-        "https://moveapi.onrender.com/api/listing/toggle/" + id,
+        "https://move-3dri.onrender.com/api/listing/toggle/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -345,7 +345,7 @@ function AllListings() {
         NotificationManager.error("Listing Update Failed  ");
       });
 
-      await fetch("https://moveapi.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page="+pageNum, {
+      await fetch("https://move-3dri.onrender.com/api/analytics/lessorAnalytics?pageSize=10&page="+pageNum, {
       headers: { Authorization: userDetails },
     })
       .then(() => {
@@ -458,7 +458,7 @@ function AllBookings() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/booking/getLessorBookings?pageSize=10&page="+pageNum, {
+      const response = await fetch("https://move-3dri.onrender.com/api/booking/getLessorBookings?pageSize=10&page="+pageNum, {
         headers: { Authorization: userDetails },
       });
       var data = await response.json();
@@ -479,7 +479,7 @@ function AllBookings() {
   async function BookingReject(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/booking/cancel/" + id,
+        "https://move-3dri.onrender.com/api/booking/cancel/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -520,7 +520,7 @@ function AllBookings() {
   async function statusChange(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/booking/markAsComplete/" + id,
+        "https://move-3dri.onrender.com/api/booking/markAsComplete/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -534,7 +534,7 @@ function AllBookings() {
         console.log(e);
       });
 
-    await fetch("https://moveapi.onrender.com/api/booking/getLessorBookings?pageSize=10&page="+pageNum, {
+    await fetch("https://move-3dri.onrender.com/api/booking/getLessorBookings?pageSize=10&page="+pageNum, {
       headers: { Authorization: userDetails },
     })
       .then((res) => {})
@@ -677,7 +677,7 @@ function PendingBookings() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://moveapi.onrender.com/api/booking/getLessorPendingBookings?pageSize=10&page="+pageNum, {
+      const response = await fetch("https://move-3dri.onrender.com/api/booking/getLessorPendingBookings?pageSize=10&page="+pageNum, {
         headers: { Authorization: userDetails },
       });
       var data = await response.json();
@@ -712,7 +712,7 @@ function PendingBookings() {
   async function rejectBooking(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/booking/reject/" + id,
+        "https://move-3dri.onrender.com/api/booking/reject/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -727,7 +727,7 @@ function PendingBookings() {
         console.log(e);
       });
 
-      await fetch("https://moveapi.onrender.com/api/analytics/adminAnalytics/getAllPendingBookings?pageSize=10&page="+pageNum, {
+      await fetch("https://move-3dri.onrender.com/api/analytics/adminAnalytics/getAllPendingBookings?pageSize=10&page="+pageNum, {
       headers: { Authorization: userDetails },
     })
       .then((res) => {
@@ -744,7 +744,7 @@ function PendingBookings() {
   async function acceptBooking(id) {
     axios
       .put(
-        "https://moveapi.onrender.com/api/booking/approve/" + id,
+        "https://move-3dri.onrender.com/api/booking/approve/" + id,
         {},
         {
           headers: { Authorization: userDetails },
@@ -758,7 +758,7 @@ function PendingBookings() {
         console.log(e);
       });
 
-    await fetch("https://moveapi.onrender.com/api/booking/getLessorPendingBookings?pageSize=10&page="+pageNum, {
+    await fetch("https://move-3dri.onrender.com/api/booking/getLessorPendingBookings?pageSize=10&page="+pageNum, {
       headers: { Authorization: userDetails },
     })
       .then(() => {})
